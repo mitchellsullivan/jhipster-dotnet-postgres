@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>Plainy.Domain.Services</RootNamespace>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="JHipsterNet.Core"  />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection"  />
+        <PackageReference Include="LanguageExt.Core"  />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Plainly.Infrastructure\Plainly.Infrastructure.csproj" />
+        <ProjectReference Include="..\Plainly.Domain\Plainly.Domain.csproj" />
+        <ProjectReference Include="..\Plainly.Crosscutting\Plainly.Crosscutting.csproj" />
+    </ItemGroup>
+
+</Project>

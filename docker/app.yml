@@ -1,0 +1,20 @@
+version: '2'
+services:
+  db:
+    container_name: db
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: jhipster
+      POSTGRES_USER: postgres
+    ports:
+      - '5432'
+  plainly-app:
+    image: plainly
+    depends_on:
+      - db
+    build:
+      context: ../
+      dockerfile: src/Plainly/Dockerfile
+    ports:
+      - 80:80

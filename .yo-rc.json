@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "blueprints": [
+      {
+        "name": "generator-jhipster-dotnetcore",
+        "version": "2.2.0"
+      }
+    ],
+    "otherModules": [
+      {
+        "name": "generator-jhipster-dotnetcore",
+        "version": "2.2.0"
+      }
+    ],
+    "namespace": "Plainy",
+    "applicationType": "monolith",
+    "databaseType": "postgres",
+    "authenticationType": "jwt",
+    "serverPort": "5000",
+    "prodDatabaseType": "mysql",
+    "jhipsterVersion": "6.10.5",
+    "baseName": "Plainly",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "react",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1624501022502,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "enableTranslation": false
+  }
+}
