@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Plainy.Domain;
+using Plainly.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class IdentityConfiguration
     {
@@ -124,7 +124,7 @@ namespace Plainy.Configuration
 
         private static async Task SeedUserRoles(UserManager<User> userManager)
         {
-            foreach (var (id, roles) in UserRoles())
+            foreach ((string id, string[] roles) in UserRoles())
             {
                 var user = await userManager.FindByIdAsync(id);
                 await userManager.AddToRolesAsync(user, roles);

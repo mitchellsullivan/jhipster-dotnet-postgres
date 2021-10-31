@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using Plainy.Crosscutting.Constants;
-using Plainy.Configuration;
-using Plainy.Security;
-using Plainy.Test.Configuration;
+using Plainly.Crosscutting.Constants;
+using Plainly.Configuration;
+using Plainly.Security;
+using Plainly.Test.Configuration;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.JsonWebTokens;
 
-namespace Plainy.Test.Setup
+namespace Plainly.Test.Setup
 {
     public class AppWebApplicationFactory<TEntryPoint> : WebApplicationFactory<TEntryPoint>
         where TEntryPoint : class

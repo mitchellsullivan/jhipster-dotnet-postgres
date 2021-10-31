@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Plainy.Domain;
-using Plainy.Domain.Services.Interfaces;
+using Plainly.Domain;
+using Plainly.Domain.Services.Interfaces;
 using Microsoft.Extensions.Options;
 
-namespace Plainy.Domain.Services
+namespace Plainly.Domain.Services
 {
     public class MailService : IMailService
     {

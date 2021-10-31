@@ -6,13 +6,13 @@ using System.Security.Authentication;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using Plainy.Domain;
-using Plainy.Domain.Services.Interfaces;
-using Plainy.Crosscutting.Exceptions;
+using Plainly.Domain;
+using Plainly.Domain.Services.Interfaces;
+using Plainly.Crosscutting.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
-namespace Plainy.Domain.Services
+namespace Plainly.Domain.Services
 {
     public class AuthenticationService : IAuthenticationService
     {

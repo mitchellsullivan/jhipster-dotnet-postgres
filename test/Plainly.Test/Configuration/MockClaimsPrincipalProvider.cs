@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace Plainy.Test.Setup
+namespace Plainly.Test.Setup
 {
     public class MockClaimsPrincipalProvider
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Plainy.Domain.Interfaces
+namespace Plainly.Domain.Interfaces
 {
     public interface IAuditedEntityBase
     {

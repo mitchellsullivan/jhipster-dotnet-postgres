@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Plainy.Domain.Interfaces;
+using Plainly.Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 
-namespace Plainy.Domain
+namespace Plainly.Domain
 {
     public class User : IdentityUser, IAuditedEntityBase
     {

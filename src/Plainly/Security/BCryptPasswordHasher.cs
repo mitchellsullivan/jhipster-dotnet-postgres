@@ -1,7 +1,7 @@
-using Plainy.Domain;
+using Plainly.Domain;
 using Microsoft.AspNetCore.Identity;
 
-namespace Plainy.Security
+namespace Plainly.Security
 {
     public class BCryptPasswordHasher : IPasswordHasher<User>
     {

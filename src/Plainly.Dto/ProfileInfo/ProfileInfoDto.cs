@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Plainy.Dto
+namespace Plainly.Dto
 {
     public class ProfileInfoDto
     {

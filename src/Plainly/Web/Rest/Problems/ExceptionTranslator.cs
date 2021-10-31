@@ -1,4 +1,4 @@
-namespace Plainy.Web.Rest.Problems
+namespace Plainly.Web.Rest.Problems
 {
     public class ExceptionTranslator
     {

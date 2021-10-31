@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using Plainy.Crosscutting.Constants;
+using Plainly.Crosscutting.Constants;
 using Newtonsoft.Json;
 
-namespace Plainy.Dto
+namespace Plainly.Dto
 {
     public class UserDto
     {

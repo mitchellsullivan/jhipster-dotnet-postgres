@@ -1,4 +1,4 @@
-namespace Plainy.Dto
+namespace Plainly.Dto
 {
     public class KeyAndPasswordDto
     {

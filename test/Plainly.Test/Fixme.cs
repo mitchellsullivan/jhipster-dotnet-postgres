@@ -1,15 +1,15 @@
-using Plainy.Infrastructure.Data;
-using Plainy.Domain;
-using Plainy.Test.Setup;
+using Plainly.Infrastructure.Data;
+using Plainly.Domain;
+using Plainly.Test.Setup;
 
-namespace Plainy.Test
+namespace Plainly.Test
 {
     public static class Fixme
     {
         public static User ReloadUser<TEntryPoint>(AppWebApplicationFactory<TEntryPoint> factory, User user)
             where TEntryPoint : class
         {
-            var applicationDatabaseContext = factory.GetRequiredService<ApplicationDatabaseContext>();
+            var applicationDatabaseContext = factory.GetRequiredService<AppDbContext>();
             applicationDatabaseContext.Entry(user).Reload();
             return user;
         }

@@ -1,13 +1,13 @@
 using System;
-using Plainy.Infrastructure.Configuration;
+using Plainly.Infrastructure.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using Plainy.Infrastructure.Data;
-using Plainy.Domain;
-using Plainy.Security;
-using Plainy.Security.Jwt;
-using Plainy.Domain.Services;
-using Plainy.Domain.Services.Interfaces;
+using Plainly.Infrastructure.Data;
+using Plainly.Domain;
+using Plainly.Security;
+using Plainly.Security.Jwt;
+using Plainly.Domain.Services;
+using Plainly.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -17,10 +17,10 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using AuthenticationService = Plainy.Domain.Services.AuthenticationService;
-using IAuthenticationService = Plainy.Domain.Services.Interfaces.IAuthenticationService;
+using AuthenticationService = Plainly.Domain.Services.AuthenticationService;
+using IAuthenticationService = Plainly.Domain.Services.Interfaces.IAuthenticationService;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class SecurityStartup
     {
@@ -33,7 +33,7 @@ namespace Plainy.Configuration
             var opt = services.BuildServiceProvider().GetRequiredService<IOptions<SecuritySettings>>();
             var securitySettings = opt.Value;
             byte[] keyBytes;
-            var secret = securitySettings.Authentication.Jwt.Secret;
+            string secret = securitySettings.Authentication.Jwt.Secret;
 
             if (!string.IsNullOrWhiteSpace(secret))
             {
@@ -51,10 +51,10 @@ namespace Plainy.Configuration
                     options.SignIn.RequireConfirmedEmail = true;
                     options.ClaimsIdentity.UserNameClaimType = UserNameClaimType;
                 })
-                .AddEntityFrameworkStores<ApplicationDatabaseContext>()
-                .AddUserStore<UserStore<User, Role, ApplicationDatabaseContext, string, IdentityUserClaim<string>,
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddUserStore<UserStore<User, Role, AppDbContext, string, IdentityUserClaim<string>,
                     UserRole, IdentityUserLogin<string>, IdentityUserToken<string>, IdentityRoleClaim<string>>>()
-                .AddRoleStore<RoleStore<Role, ApplicationDatabaseContext, string, UserRole, IdentityRoleClaim<string>>
+                .AddRoleStore<RoleStore<Role, AppDbContext, string, UserRole, IdentityRoleClaim<string>>
                 >()
                 .AddDefaultTokenProviders();
 

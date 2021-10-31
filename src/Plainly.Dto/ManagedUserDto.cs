@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Plainy.Dto
+namespace Plainly.Dto
 {
     public class ManagedUserDto : UserDto
     {

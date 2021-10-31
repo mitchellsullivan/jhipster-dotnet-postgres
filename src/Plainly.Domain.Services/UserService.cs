@@ -2,19 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Plainy.Crosscutting.Constants;
-using Plainy.Crosscutting.Exceptions;
-using Plainy.Domain;
-using Plainy.Domain.Services.Interfaces;
-using Plainy.Dto;
-using Plainy.Service.Utilities;
+using Plainly.Crosscutting.Constants;
+using Plainly.Crosscutting.Exceptions;
+using Plainly.Domain;
+using Plainly.Domain.Services.Interfaces;
+using Plainly.Dto;
+using Plainly.Service.Utilities;
 using LanguageExt.UnitsOfMeasure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace Plainy.Domain.Services
+namespace Plainly.Domain.Services
 {
     public class UserService : IUserService
     {

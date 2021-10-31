@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using Plainy.Dto;
+using Plainly.Dto;
 
-namespace Plainy.Controllers
+namespace Plainly.Controllers
 {
 
     [Route("management")]

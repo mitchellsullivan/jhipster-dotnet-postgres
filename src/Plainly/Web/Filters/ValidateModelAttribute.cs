@@ -1,8 +1,8 @@
-using Plainy.Web.Rest.Problems;
+using Plainly.Web.Rest.Problems;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Plainy.Web.Filters
+namespace Plainly.Web.Filters
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {

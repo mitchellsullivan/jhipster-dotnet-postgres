@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace Plainy.Web.Rest.Problems
+namespace Plainly.Web.Rest.Problems
 {
     public class ProblemDetailsConfiguration : IConfigureOptions<ProblemDetailsOptions>
     {
@@ -26,7 +26,7 @@ namespace Plainy.Web.Rest.Problems
             options.OnBeforeWriteDetails = (ctx, details) =>
             {
                 // keep consistent with asp.net core 2.2 conventions that adds a tracing value
-                var traceId = Activity.Current?.Id ?? _HttpContextAccessor.HttpContext.TraceIdentifier;
+                string? traceId = Activity.Current?.Id ?? _HttpContextAccessor.HttpContext.TraceIdentifier;
                 details.Extensions["traceId"] = traceId;
             };
 

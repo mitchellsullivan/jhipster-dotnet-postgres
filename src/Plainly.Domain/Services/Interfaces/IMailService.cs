@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Plainy.Domain;
+using Plainly.Domain;
 
-namespace Plainy.Domain.Services.Interfaces
+namespace Plainly.Domain.Services.Interfaces
 {
     public interface IMailService
     {

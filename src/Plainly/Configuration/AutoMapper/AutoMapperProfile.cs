@@ -1,10 +1,10 @@
 using AutoMapper;
 using System.Linq;
-using Plainy.Domain;
-using Plainy.Dto;
+using Plainly.Domain;
+using Plainly.Dto;
 
 
-namespace Plainy.Configuration.AutoMapper
+namespace Plainly.Configuration.AutoMapper
 {
     public class AutoMapperProfile : Profile
     {

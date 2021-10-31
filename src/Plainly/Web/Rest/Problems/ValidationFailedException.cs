@@ -2,7 +2,7 @@ using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace Plainy.Web.Rest.Problems
+namespace Plainly.Web.Rest.Problems
 {
     //https://www.jerriepelser.com/blog/validation-response-aspnet-core-webapi/
     public class ValidationFailedProblem : ProblemDetailsException

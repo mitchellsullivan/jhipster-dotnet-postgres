@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Plainy.Crosscutting.Constants;
-using Plainy.Crosscutting.Exceptions;
-using Plainy.Domain;
+using Plainly.Crosscutting.Constants;
+using Plainly.Crosscutting.Exceptions;
+using Plainly.Domain;
 
-namespace Plainy.Domain.Services.Interfaces
+namespace Plainly.Domain.Services.Interfaces
 {
     public interface IUserService
     {

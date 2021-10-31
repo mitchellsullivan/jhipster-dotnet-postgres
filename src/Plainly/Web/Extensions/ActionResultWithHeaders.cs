@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 
-namespace Plainy.Web.Extensions
+namespace Plainly.Web.Extensions
 {
     public class ActionResultWithHeaders : ActionResult
     {
@@ -17,7 +18,7 @@ namespace Plainy.Web.Extensions
 
         private void AddHeaders(HttpResponse response)
         {
-            foreach (var (name, value) in _headers) response.Headers.Add(name, value);
+            foreach ((string name, StringValues value) in _headers) response.Headers.Add(name, value);
         }
 
         public override Task ExecuteResultAsync(ActionContext context)

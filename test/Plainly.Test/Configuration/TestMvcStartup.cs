@@ -2,7 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
-namespace Plainy.Test.Configuration
+namespace Plainly.Test.Configuration
 {
     public class TestMvcStartup
     {

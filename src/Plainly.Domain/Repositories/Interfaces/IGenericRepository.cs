@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using JHipsterNet.Core.Pagination;
 using Microsoft.EntityFrameworkCore.Query;
 
-namespace Plainy.Domain.Repositories.Interfaces
+namespace Plainly.Domain.Repositories.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
@@ -20,7 +20,7 @@ namespace Plainy.Domain.Repositories.Interfaces
         Task DeleteByIdAsync(object id);
         Task DeleteAsync(TEntity entity);
         Task Clear();
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         TEntity Add(TEntity entity);
         bool AddRange(params TEntity[] entities);
         TEntity Attach(TEntity entity);

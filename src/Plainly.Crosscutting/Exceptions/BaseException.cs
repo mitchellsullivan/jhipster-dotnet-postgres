@@ -1,6 +1,6 @@
 using System;
 
-namespace Plainy.Crosscutting.Exceptions
+namespace Plainly.Crosscutting.Exceptions
 {
     public abstract class BaseException : Exception
     {

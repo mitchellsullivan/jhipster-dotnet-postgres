@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Plainy.Web.Extensions
+namespace Plainly.Web.Extensions
 {
     public static class HttpRequestExtensions
     {

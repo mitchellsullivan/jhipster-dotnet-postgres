@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using JHipsterNet.Core.Pagination;
 using Microsoft.EntityFrameworkCore.Query;
 
-namespace Plainy.Domain.Repositories.Interfaces
+namespace Plainly.Domain.Repositories.Interfaces
 {
     public interface IFluentRepository<TEntity> where TEntity : class
     {

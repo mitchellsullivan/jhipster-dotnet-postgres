@@ -2,7 +2,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 
-namespace Plainy.Security.Jwt
+namespace Plainly.Security.Jwt
 {
     public class RoleClaimsTransformation : IClaimsTransformation
     {

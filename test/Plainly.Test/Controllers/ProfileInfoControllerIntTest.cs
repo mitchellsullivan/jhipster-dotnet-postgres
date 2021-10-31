@@ -1,12 +1,12 @@
 using FluentAssertions;
-using Plainy.Test.Setup;
+using Plainly.Test.Setup;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Plainy.Test.Controllers
+namespace Plainly.Test.Controllers
 {
     public class ProfileInfoControllerIntTest
     {

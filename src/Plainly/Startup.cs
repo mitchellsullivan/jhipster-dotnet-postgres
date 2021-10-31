@@ -1,7 +1,7 @@
 using System;
-using Plainy.Infrastructure.Data;
-using Plainy.Configuration;
-using Plainy.Infrastructure.Configuration;
+using Plainly.Infrastructure.Data;
+using Plainly.Configuration;
+using Plainly.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 [assembly: ApiController]
 
-namespace Plainy
+namespace Plainly
 {
     public class Startup
     {
@@ -48,7 +48,7 @@ namespace Plainy
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public virtual void Configure(IApplicationBuilder app, IHostEnvironment env, IServiceProvider serviceProvider,
-            ApplicationDatabaseContext context, IOptions<SecuritySettings> securitySettingsOptions)
+            AppDbContext context, IOptions<SecuritySettings> securitySettingsOptions)
         {
             var securitySettings = securitySettingsOptions.Value;
             app

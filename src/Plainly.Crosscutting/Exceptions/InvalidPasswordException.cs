@@ -1,6 +1,6 @@
-using Plainy.Crosscutting.Constants;
+using Plainly.Crosscutting.Constants;
 
-namespace Plainy.Crosscutting.Exceptions
+namespace Plainly.Crosscutting.Exceptions
 {
     public class InvalidPasswordException : BaseException
     {

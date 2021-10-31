@@ -1,9 +1,9 @@
 using Scrutor;
 using Microsoft.Extensions.DependencyInjection;
-using Plainy.Domain.Repositories.Interfaces;
-using Plainy.Infrastructure.Data.Repositories;
+using Plainly.Domain.Repositories.Interfaces;
+using Plainly.Infrastructure.Data.Repositories;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class RepositoryStartup
     {
@@ -14,7 +14,7 @@ namespace Plainy.Configuration
             services.Scan(scan => scan
                 .FromAssembliesOf(typeof(IUnitOfWork), typeof(UnitOfWork))
                     // Register repository interfaces using the I prefix convention for interfaces to match interface/class
-                    .AddClasses(classes => classes.InNamespaces("Plainy.Infrastructure.Data.Repositories"))
+                    .AddClasses(classes => classes.InNamespaces("Plainly.Infrastructure.Data.Repositories"))
                         .UsingRegistrationStrategy(RegistrationStrategy.Replace(ReplacementBehavior.ServiceType))
                         .AsMatchingInterface()
                         .WithScopedLifetime()
@@ -22,7 +22,7 @@ namespace Plainy.Configuration
                     // Now find repositories that has class name ending with "ExtendedRepository" and register interfaces it implements with priority.
                     // For example: if JobExtendedRepository class is present and implements IJobRepository interface, take precedence over
                     // existing registrations.
-                    .AddClasses(classes => classes.Where(type => type.Namespace.Equals("Plainy.Infrastructure.Data.Repositories") &&
+                    .AddClasses(classes => classes.Where(type => type.Namespace.Equals("Plainly.Infrastructure.Data.Repositories") &&
                                                                  type.Name.EndsWith("ExtendedRepository")))
                         .UsingRegistrationStrategy(RegistrationStrategy.Replace(ReplacementBehavior.ServiceType))
                         .AsImplementedInterfaces()

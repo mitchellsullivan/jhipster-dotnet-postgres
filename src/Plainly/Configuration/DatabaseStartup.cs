@@ -1,52 +1,27 @@
 using System;
-using Plainy.Infrastructure.Data;
+using Plainly.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class DatabaseConfiguration
     {
         public static IServiceCollection AddDatabaseModule(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = null;
-            string databaseUrl = configuration.GetValue<string>("DATABASE_URL");
-
-            if (!String.IsNullOrEmpty(databaseUrl) && Uri.IsWellFormedUriString(databaseUrl, UriKind.RelativeOrAbsolute))
+            string connectionString = configuration.GetConnectionString("AppDbContext");
+            
+            services.AddDbContext<AppDbContext>(context =>
             {
-                Console.WriteLine("DATABASE_URL will be used to create the connection string.");
-                //  Parse the connection string
-                var databaseUri = new Uri(databaseUrl);
-                string db = databaseUri.LocalPath.TrimStart('/');
-                string[] userInfo = databaseUri.UserInfo.Split(':', StringSplitOptions.RemoveEmptyEntries);
+                context.UseNpgsql(connectionString)
+                    .UseSnakeCaseNamingConvention();
+            });
 
-                switch (databaseUri.Scheme)
-                {
-                    case "postgres":
-                        connectionString = $"Server={databaseUri.Host};Port={databaseUri.Port};Database={db};User Id={userInfo[0]};Password={userInfo[1]};Integrated Security=true;Pooling=true;MinPoolSize=0;MaxPoolSize=20;";
-                        break;
-                    case "mysql":
-                        connectionString = $"Server={databaseUri.Host};Port={databaseUri.Port};Database={db};User={userInfo[0]};Password={userInfo[1]};Pooling=true;MinimumPoolSize=0;MaximumPoolsize=10;";
-                        break;
-                    case "mssql":
-                        connectionString = $"Server={databaseUri.Host};Port={databaseUri.Port};Database={db};User={userInfo[0]};Password={userInfo[1]};Trusted_Connection=False;Pooling=true;";
-                        break;
-                    default:
-                        Console.WriteLine("It was not possible to determine the database type provided by DATABASE_URL");
-                        break;
-                }
-            }
-            else
-            {
-                connectionString = configuration.GetConnectionString("AppDbContext");
-            }
-
-            services.AddDbContext<ApplicationDatabaseContext>(context => { context.UseNpgsql(connectionString); });
-
-            services.AddScoped<DbContext>(provider => provider.GetService<ApplicationDatabaseContext>());
+            services.AddScoped<DbContext>(provider => provider.GetService<AppDbContext>());
 
             return services;
         }
@@ -54,17 +29,26 @@ namespace Plainy.Configuration
         public static IApplicationBuilder UseApplicationDatabase(this IApplicationBuilder app,
             IServiceProvider serviceProvider, IHostEnvironment environment)
         {
-            if (environment.IsDevelopment() || environment.IsProduction())
+            if (!environment.IsDevelopment() && !environment.IsProduction())
             {
-                using (var scope = serviceProvider.CreateScope())
-                {
-                    var context = scope.ServiceProvider.GetRequiredService<ApplicationDatabaseContext>();
-                    context.Database.OpenConnection();
-                    context.Database.EnsureCreated();
-                }
+                return app;
             }
+
+            using var scope = serviceProvider.CreateScope();
+                
+            var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            context.Database.OpenConnection();
+            context.Database.EnsureCreated();
 
             return app;
         }
     }
+    
+    // public class AppDbContextFactory: IDesignTimeDbContextFactory<AppDbContext>
+    // {
+    //     public AppDbContext CreateDbContext(string[] args)
+    //     {
+    //
+    //     }
+    // }
 }

@@ -1,11 +1,11 @@
 using AutoMapper;
 using FluentAssertions;
-using Plainy.Domain;
-using Plainy.Dto;
-using Plainy.Security;
-using Plainy.Configuration.AutoMapper;
-using Plainy.Test.Setup;
-using Plainy.Crosscutting.Constants;
+using Plainly.Domain;
+using Plainly.Dto;
+using Plainly.Security;
+using Plainly.Configuration.AutoMapper;
+using Plainly.Test.Setup;
+using Plainly.Crosscutting.Constants;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Plainy.Test.Controllers
+namespace Plainly.Test.Controllers
 {
     public class UserResourceIntTest
     {

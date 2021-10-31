@@ -1,7 +1,7 @@
 using System;
-using Plainy.Domain.Interfaces;
+using Plainly.Domain.Interfaces;
 
-namespace Plainy.Domain
+namespace Plainly.Domain
 {
     public abstract class AuditedEntityBase : IAuditedEntityBase
     {

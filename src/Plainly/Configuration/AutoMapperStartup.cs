@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class AutoMapperStartup
     {

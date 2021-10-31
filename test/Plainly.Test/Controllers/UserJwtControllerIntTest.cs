@@ -1,8 +1,8 @@
 using FluentAssertions;
 using FluentAssertions.Json;
-using Plainy.Domain;
-using Plainy.Dto;
-using Plainy.Test.Setup;
+using Plainly.Domain;
+using Plainly.Dto;
+using Plainly.Test.Setup;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json.Linq;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Plainy.Test.Controllers
+namespace Plainly.Test.Controllers
 {
     public class UserJwtControllerIntTest
     {

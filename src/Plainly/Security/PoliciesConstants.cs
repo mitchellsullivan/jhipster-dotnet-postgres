@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
-using Plainy.Crosscutting.Constants;
+using Plainly.Crosscutting.Constants;
 
-namespace Plainy.Security
+namespace Plainly.Security
 {
     public static class PoliciesConstants
     {

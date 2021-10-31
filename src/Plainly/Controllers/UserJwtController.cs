@@ -1,16 +1,16 @@
-using Plainy.Dto;
-using Plainy.Security.Jwt;
-using Plainy.Domain.Services.Interfaces;
-using Plainy.Web.Extensions;
-using Plainy.Web.Filters;
-using Plainy.Crosscutting.Constants;
+using Plainly.Dto;
+using Plainly.Security.Jwt;
+using Plainly.Domain.Services.Interfaces;
+using Plainly.Web.Extensions;
+using Plainly.Web.Filters;
+using Plainly.Crosscutting.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace Plainy.Controllers
+namespace Plainly.Controllers
 {
     [Route("api")]
     [ApiController]
@@ -30,8 +30,8 @@ namespace Plainy.Controllers
         public async Task<ActionResult<JwtToken>> Authorize([FromBody] LoginDto LoginDto)
         {
             var user = await _authenticationService.Authenticate(LoginDto.Username, LoginDto.Password);
-            var rememberMe = LoginDto.RememberMe;
-            var jwt = _tokenProvider.CreateToken(user, rememberMe);
+            bool rememberMe = LoginDto.RememberMe;
+            string jwt = _tokenProvider.CreateToken(user, rememberMe);
             var httpHeaders = new HeaderDictionary
             {
                 [JwtConstants.AuthorizationHeader] = $"{JwtConstants.BearerPrefix} {jwt}"

@@ -1,13 +1,13 @@
 using Hellang.Middleware.ProblemDetails;
-using Plainy.Web.Rest.Problems;
-using Plainy.Crosscutting.Exceptions;
+using Plainly.Web.Rest.Problems;
+using Plainly.Crosscutting.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class ProblemDetailsStartup
     {

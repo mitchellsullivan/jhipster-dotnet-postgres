@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace Plainy.Domain
+namespace Plainly.Domain
 {
     public class Role : IdentityRole<string>
     {

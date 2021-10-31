@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Plainy.Web.Extensions
+namespace Plainly.Web.Extensions
 {
     public static class ActionResultExtensions
     {

@@ -39,6 +39,11 @@ namespace Plainly.Infrastructure.Data
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            BuildIdentityTables(modelBuilder);
+        }
+
+        private void BuildIdentityTables(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<IdentityRoleClaim<string>>(b =>
             {
                 b.Property<int>("Id")
@@ -332,9 +337,9 @@ namespace Plainly.Infrastructure.Data
                     .HasColumnType("text")
                     .HasColumnName("role_id");
 
-                b.Property<string>("UserId1")
+                b.Property<string>("UserId")
                     .HasColumnType("text")
-                    .HasColumnName("user_id1");
+                    .HasColumnName("user_id");
 
                 b.HasKey("UserId", "RoleId")
                     .HasName("pk_user_roles");
@@ -418,39 +423,40 @@ namespace Plainly.Infrastructure.Data
 
             modelBuilder.Entity<User>(b => { b.Navigation("UserRoles"); });
         }
-
+        
         /// <summary>
         /// SaveChangesAsync with entities audit
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public override async Task<int> SaveChangesAsync(
-            CancellationToken cancellationToken = default(CancellationToken)
+            CancellationToken cancellationToken = default
         )
         {
             var entries = ChangeTracker
                 .Entries()
-                .Where(e => e.Entity is IAuditedEntityBase && (
-                    e.State == EntityState.Added
-                    || e.State == EntityState.Modified));
+                .Where(e => e.Entity is IAuditedEntityBase && 
+                            e.State is EntityState.Added or EntityState.Modified);
 
             string modifiedOrCreatedBy = _httpContextAccessor?.HttpContext?.User?.Identity?.Name ?? "System";
 
             foreach (var entityEntry in entries)
             {
+                IAuditedEntityBase entity = (IAuditedEntityBase)entityEntry.Entity;
+                
                 if (entityEntry.State == EntityState.Added)
                 {
-                    ((IAuditedEntityBase)entityEntry.Entity).CreatedDate = DateTime.Now;
-                    ((IAuditedEntityBase)entityEntry.Entity).CreatedBy = modifiedOrCreatedBy;
+                    entity.CreatedDate = DateTime.Now;
+                    entity.CreatedBy = modifiedOrCreatedBy;
                 }
                 else
                 {
-                    Entry((IAuditedEntityBase)entityEntry.Entity).Property(p => p.CreatedDate).IsModified = false;
-                    Entry((IAuditedEntityBase)entityEntry.Entity).Property(p => p.CreatedBy).IsModified = false;
+                    Entry(entity).Property(p => p.CreatedDate).IsModified = false;
+                    Entry(entity).Property(p => p.CreatedBy).IsModified = false;
                 }
 
-                ((IAuditedEntityBase)entityEntry.Entity).LastModifiedDate = DateTime.Now;
-                ((IAuditedEntityBase)entityEntry.Entity).LastModifiedBy = modifiedOrCreatedBy;
+                entity.LastModifiedDate = DateTime.Now;
+                entity.LastModifiedBy = modifiedOrCreatedBy;
             }
 
             return await base.SaveChangesAsync(cancellationToken);

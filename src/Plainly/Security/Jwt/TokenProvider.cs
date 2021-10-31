@@ -5,12 +5,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
-using Plainy.Infrastructure.Configuration;
+using Plainly.Infrastructure.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Plainy.Security.Jwt
+namespace Plainly.Security.Jwt
 {
     public interface ITokenProvider
     {
@@ -86,7 +86,7 @@ namespace Plainy.Security.Jwt
         private void Init()
         {
             byte[] keyBytes;
-            var secret = _securitySettings.Authentication.Jwt.Secret;
+            string secret = _securitySettings.Authentication.Jwt.Secret;
 
             if (!string.IsNullOrWhiteSpace(secret))
             {
@@ -108,9 +108,9 @@ namespace Plainy.Security.Jwt
 
         private static ClaimsIdentity CreateSubject(IPrincipal principal)
         {
-            var username = principal.Identity.Name;
+            string? username = principal.Identity.Name;
             var roles = GetRoles(principal);
-            var authValue = string.Join(",", roles.Map(it => it.Value));
+            string authValue = string.Join(",", roles.Map(it => it.Value));
             return new ClaimsIdentity(new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, username),
                 new Claim(AuthoritiesKey, authValue)

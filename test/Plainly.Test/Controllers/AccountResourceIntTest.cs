@@ -1,12 +1,12 @@
 using Castle.Core.Internal;
 using FluentAssertions;
 using FluentAssertions.Extensions;
-using Plainy.Configuration;
-using Plainy.Domain;
-using Plainy.Security;
-using Plainy.Dto;
-using Plainy.Test.Setup;
-using Plainy.Crosscutting.Constants;
+using Plainly.Configuration;
+using Plainly.Domain;
+using Plainly.Security;
+using Plainly.Dto;
+using Plainly.Test.Setup;
+using Plainly.Crosscutting.Constants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
@@ -17,7 +17,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Plainy.Test.Controllers
+namespace Plainly.Test.Controllers
 {
     public class AccountResourceIntTest
     {

@@ -1,8 +1,8 @@
-namespace Plainy.Domain.Services.Interfaces
+namespace Plainly.Domain.Services.Interfaces
 {
     // This class is used as a helper type for assembly scanning
     public class ServicesInterfacesAssemblyHelper
     {
-        public static readonly string Namespace = "Plainy.Domain.Services.Interfaces";
+        public static readonly string Namespace = "Plainly.Domain.Services.Interfaces";
     }
 }

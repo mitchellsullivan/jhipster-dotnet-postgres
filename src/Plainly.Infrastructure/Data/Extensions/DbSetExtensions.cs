@@ -51,7 +51,7 @@ namespace Plainly.Infrastructure.Data.Extensions
             }
             catch (Exception ex)
             {
-                Log.Error(ex, $"Error when trying to remove navigation property. The deletion was not performed");
+                Log.Error(ex, "Error when trying to remove navigation property. The deletion was not performed");
             }
         }
 
@@ -63,7 +63,7 @@ namespace Plainly.Infrastructure.Data.Extensions
             if (mba == null)
             {
                 var ex = new NullReferenceException();
-                Log.Error(ex, $"Error when trying to get the property, it doesn't exist");
+                Log.Error(ex, "Error when trying to get the property, it doesn't exist");
                 throw ex;
             }
 
@@ -74,12 +74,9 @@ namespace Plainly.Infrastructure.Data.Extensions
                 value = Convert.ChangeType(propertyValue, mba.ReturnType);
             }
             catch (SystemException ex) when (
-                ex is InvalidCastException ||
-                ex is FormatException ||
-                ex is OverflowException ||
-                ex is ArgumentNullException)
+                ex is InvalidCastException or FormatException or OverflowException or ArgumentNullException)
             {
-                Log.Error(ex, $"Error when trying to convert type of property value with type of property");
+                Log.Error(ex, "Error when trying to convert type of property value with type of property");
                 throw;
             }
 

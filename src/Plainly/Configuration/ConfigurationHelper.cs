@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class ConfigurationHelper
     {

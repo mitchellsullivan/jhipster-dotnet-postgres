@@ -4,23 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using JHipsterNet.Core.Pagination;
 using JHipsterNet.Core.Pagination.Extensions;
-using Plainy.Domain;
-using Plainy.Security;
-using Plainy.Domain.Services.Interfaces;
-using Plainy.Dto;
-using Plainy.Web.Extensions;
-using Plainy.Web.Filters;
-using Plainy.Web.Rest.Problems;
-using Plainy.Web.Rest.Utilities;
-using Plainy.Crosscutting.Constants;
-using Plainy.Crosscutting.Exceptions;
+using Plainly.Domain;
+using Plainly.Security;
+using Plainly.Domain.Services.Interfaces;
+using Plainly.Dto;
+using Plainly.Web.Extensions;
+using Plainly.Web.Filters;
+using Plainly.Web.Rest.Problems;
+using Plainly.Web.Rest.Utilities;
+using Plainly.Crosscutting.Constants;
+using Plainly.Crosscutting.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Plainy.Controllers
+namespace Plainly.Controllers
 {
     [Authorize]
     [Route("api")]

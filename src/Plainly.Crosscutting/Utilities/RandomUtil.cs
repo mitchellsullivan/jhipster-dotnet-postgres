@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Plainy.Service.Utilities
+namespace Plainly.Service.Utilities
 {
     public class RandomUtil
     {

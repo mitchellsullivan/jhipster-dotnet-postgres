@@ -1,4 +1,4 @@
-namespace Plainy.Crosscutting.Constants
+namespace Plainly.Crosscutting.Constants
 {
     public static class Constants
     {

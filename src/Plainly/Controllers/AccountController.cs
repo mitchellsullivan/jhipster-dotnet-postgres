@@ -3,21 +3,21 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Security.Claims;
-using Plainy.Domain;
-using Plainy.Dto;
-using Plainy.Web.Extensions;
-using Plainy.Web.Filters;
-using Plainy.Web.Rest.Problems;
-using Plainy.Configuration;
-using Plainy.Crosscutting.Constants;
-using Plainy.Crosscutting.Exceptions;
+using Plainly.Domain;
+using Plainly.Dto;
+using Plainly.Web.Extensions;
+using Plainly.Web.Filters;
+using Plainly.Web.Rest.Problems;
+using Plainly.Configuration;
+using Plainly.Crosscutting.Constants;
+using Plainly.Crosscutting.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Plainy.Domain.Services.Interfaces;
+using Plainly.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Plainy.Controllers
+namespace Plainly.Controllers
 {
 
     [Route("api")]
@@ -82,7 +82,7 @@ namespace Plainy.Controllers
         [ValidateModel]
         public async Task<ActionResult> SaveAccount([FromBody] UserDto userDto)
         {
-            var userName = _userManager.GetUserName(User);
+            string userName = _userManager.GetUserName(User);
             if (userName == null) throw new InternalServerErrorException("Current user login not found");
 
             var existingUser = await _userManager.FindByEmailAsync(userDto.Email);
@@ -112,7 +112,7 @@ namespace Plainy.Controllers
         [HttpPost("account/reset-password/init")]
         public async Task<ActionResult> RequestPasswordReset()
         {
-            var mail = await Request.BodyAsStringAsync();
+            string mail = await Request.BodyAsStringAsync();
             var user = await _userService.RequestPasswordReset(mail);
             if (user == null) throw new EmailNotFoundException();
 

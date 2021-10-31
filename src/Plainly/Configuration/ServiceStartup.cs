@@ -1,9 +1,9 @@
 using Scrutor;
 using Microsoft.Extensions.DependencyInjection;
-using Plainy.Domain.Services;
-using Plainy.Domain.Services.Interfaces;
+using Plainly.Domain.Services;
+using Plainly.Domain.Services.Interfaces;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class ServiceStartup
     {

@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class WebConfiguration
     {

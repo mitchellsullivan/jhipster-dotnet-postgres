@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Plainy.Dto;
+using Plainly.Dto;
 
-namespace Plainy.Controllers
+namespace Plainly.Controllers
 {
     [Route("")]
     [ApiController]

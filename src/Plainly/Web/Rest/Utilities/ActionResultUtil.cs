@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Plainy.Web.Rest.Utilities
+namespace Plainly.Web.Rest.Utilities
 {
     public static class ActionResultUtil
     {

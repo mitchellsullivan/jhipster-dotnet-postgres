@@ -5,7 +5,7 @@ using System.Text;
 using FluentAssertions;
 using Newtonsoft.Json;
 
-namespace Plainy.Test.Controllers
+namespace Plainly.Test.Controllers
 {
     public static class TestUtil
     {

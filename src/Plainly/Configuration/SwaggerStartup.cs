@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Plainy.Configuration
+namespace Plainly.Configuration
 {
     public static class SwaggerConfiguration
     {

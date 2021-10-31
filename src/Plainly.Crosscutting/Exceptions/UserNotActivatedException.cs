@@ -1,6 +1,6 @@
 using System.Security.Authentication;
 
-namespace Plainy.Crosscutting.Exceptions
+namespace Plainly.Crosscutting.Exceptions
 {
     public class UserNotActivatedException : AuthenticationException
     {
