@@ -46,30 +46,30 @@ namespace Plainly.Infrastructure.Data
         {
             modelBuilder.Entity<IdentityRoleClaim<string>>(b =>
             {
-                b.Property<int>("Id")
+                b.Property(rc => rc.Id)
                     .ValueGeneratedOnAdd()
                     .HasColumnType("integer")
                     .HasColumnName("id")
                     .HasAnnotation("Npgsql:ValueGenerationStrategy",
                         NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                b.Property<string>("ClaimType")
+                b.Property(rc => rc.ClaimType)
                     .HasColumnType("text")
                     .HasColumnName("claim_type");
 
-                b.Property<string>("ClaimValue")
+                b.Property(rc => rc.ClaimValue)
                     .HasColumnType("text")
                     .HasColumnName("claim_value");
 
-                b.Property<string>("RoleId")
+                b.Property(rc => rc.RoleId)
                     .IsRequired()
                     .HasColumnType("text")
                     .HasColumnName("role_id");
 
-                b.HasKey("Id")
+                b.HasKey(rc => rc.Id)
                     .HasName("pk_role_claims");
 
-                b.HasIndex("RoleId")
+                b.HasIndex(rc => rc.RoleId)
                     .HasDatabaseName("ix_role_claims_role_id");
 
                 b.ToTable("role_claims");
@@ -77,30 +77,30 @@ namespace Plainly.Infrastructure.Data
 
             modelBuilder.Entity<IdentityUserClaim<string>>(b =>
             {
-                b.Property<int>("Id")
+                b.Property(uc => uc.Id)
                     .ValueGeneratedOnAdd()
                     .HasColumnType("integer")
                     .HasColumnName("id")
                     .HasAnnotation("Npgsql:ValueGenerationStrategy",
                         NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                b.Property<string>("ClaimType")
+                b.Property(uc => uc.ClaimType)
                     .HasColumnType("text")
                     .HasColumnName("claim_type");
 
-                b.Property<string>("ClaimValue")
+                b.Property(uc => uc.ClaimValue)
                     .HasColumnType("text")
                     .HasColumnName("claim_value");
 
-                b.Property<string>("UserId")
+                b.Property(uc => uc.UserId)
                     .IsRequired()
                     .HasColumnType("text")
                     .HasColumnName("user_id");
 
-                b.HasKey("Id")
+                b.HasKey(uc => uc.Id)
                     .HasName("pk_user_claims");
 
-                b.HasIndex("UserId")
+                b.HasIndex(uc => uc.UserId)
                     .HasDatabaseName("ix_user_claims_user_id");
 
                 b.ToTable("user_claims");
@@ -108,27 +108,31 @@ namespace Plainly.Infrastructure.Data
 
             modelBuilder.Entity<IdentityUserLogin<string>>(b =>
             {
-                b.Property<string>("LoginProvider")
+                b.Property(ul => ul.LoginProvider)
                     .HasColumnType("text")
                     .HasColumnName("login_provider");
 
-                b.Property<string>("ProviderKey")
+                b.Property(ul => ul.ProviderKey)
                     .HasColumnType("text")
                     .HasColumnName("provider_key");
 
-                b.Property<string>("ProviderDisplayName")
+                b.Property(ul => ul.ProviderDisplayName)
                     .HasColumnType("text")
                     .HasColumnName("provider_display_name");
 
-                b.Property<string>("UserId")
+                b.Property(ul => ul.UserId)
                     .IsRequired()
                     .HasColumnType("text")
                     .HasColumnName("user_id");
 
-                b.HasKey("LoginProvider", "ProviderKey")
+                b.HasKey(ul =>
+                    new {
+                        ul.LoginProvider,
+                        ul.ProviderKey
+                    })
                     .HasName("pk_user_logins");
 
-                b.HasIndex("UserId")
+                b.HasIndex(ul => ul.UserId)
                     .HasDatabaseName("ix_user_logins_user_id");
 
                 b.ToTable("user_logins");
@@ -136,23 +140,28 @@ namespace Plainly.Infrastructure.Data
 
             modelBuilder.Entity<IdentityUserToken<string>>(b =>
             {
-                b.Property<string>("UserId")
+                b.Property(ut => ut.UserId)
                     .HasColumnType("text")
                     .HasColumnName("user_id");
 
-                b.Property<string>("LoginProvider")
+                b.Property(ut => ut.LoginProvider)
                     .HasColumnType("text")
                     .HasColumnName("login_provider");
 
-                b.Property<string>("Name")
+                b.Property(ut => ut.Name)
                     .HasColumnType("text")
                     .HasColumnName("name");
 
-                b.Property<string>("Value")
+                b.Property(ut => ut.Value)
                     .HasColumnType("text")
                     .HasColumnName("value");
 
-                b.HasKey("UserId", "LoginProvider", "Name")
+                b.HasKey(ut => new
+                    {
+                        ut.UserId, 
+                        ut.LoginProvider, 
+                        ut.Name,
+                    })
                     .HasName("pk_user_tokens");
 
                 b.ToTable("user_tokens");
@@ -160,29 +169,29 @@ namespace Plainly.Infrastructure.Data
 
             modelBuilder.Entity<Role>(b =>
             {
-                b.Property<string>("Id")
+                b.Property(r => r.Id)
                     .HasColumnType("text")
                     .HasColumnName("id");
 
-                b.Property<string>("ConcurrencyStamp")
+                b.Property(r => r.ConcurrencyStamp)
                     .IsConcurrencyToken()
                     .HasColumnType("text")
                     .HasColumnName("concurrency_stamp");
 
-                b.Property<string>("Name")
+                b.Property(r => r.Name)
                     .HasMaxLength(256)
                     .HasColumnType("character varying(256)")
                     .HasColumnName("name");
 
-                b.Property<string>("NormalizedName")
+                b.Property(r => r.NormalizedName)
                     .HasMaxLength(256)
                     .HasColumnType("character varying(256)")
                     .HasColumnName("normalized_name");
 
-                b.HasKey("Id")
+                b.HasKey(r => r.Id)
                     .HasName("pk_roles");
 
-                b.HasIndex("NormalizedName")
+                b.HasIndex(r => r.NormalizedName)
                     .IsUnique()
                     .HasDatabaseName("ix_role_name");
 
@@ -191,136 +200,136 @@ namespace Plainly.Infrastructure.Data
 
             modelBuilder.Entity<User>(b =>
             {
-                b.Property<string>("Id")
+                b.Property(u => u.Id)
                     .HasColumnType("text")
                     .HasColumnName("id");
 
-                b.Property<int>("AccessFailedCount")
+                b.Property(u => u.AccessFailedCount)
                     .HasColumnType("integer")
                     .HasColumnName("access_failed_count");
 
-                b.Property<bool>("Activated")
+                b.Property(u => u.Activated)
                     .HasColumnType("boolean")
                     .HasColumnName("activated");
 
-                b.Property<string>("ActivationKey")
+                b.Property(u => u.ActivationKey)
                     .HasMaxLength(20)
                     .HasColumnType("character varying(20)")
                     .HasColumnName("activation_key");
 
-                b.Property<string>("ConcurrencyStamp")
+                b.Property(u => u.ConcurrencyStamp)
                     .IsConcurrencyToken()
                     .HasColumnType("text")
                     .HasColumnName("concurrency_stamp");
 
-                b.Property<string>("CreatedBy")
+                b.Property(u => u.CreatedBy)
                     .HasColumnType("text")
                     .HasColumnName("created_by");
 
-                b.Property<DateTime>("CreatedDate")
+                b.Property(u => u.CreatedDate)
                     .HasColumnType("timestamp without time zone")
                     .HasColumnName("created_date");
 
-                b.Property<string>("Email")
+                b.Property(u => u.Email)
                     .HasMaxLength(256)
                     .HasColumnType("character varying(256)")
                     .HasColumnName("email");
 
-                b.Property<bool>("EmailConfirmed")
+                b.Property(u => u.EmailConfirmed)
                     .HasColumnType("boolean")
                     .HasColumnName("email_confirmed");
 
-                b.Property<string>("FirstName")
+                b.Property(u => u.FirstName)
                     .HasMaxLength(50)
                     .HasColumnType("character varying(50)")
                     .HasColumnName("first_name");
 
-                b.Property<string>("ImageUrl")
+                b.Property(u => u.ImageUrl)
                     .HasMaxLength(256)
                     .HasColumnType("character varying(256)")
                     .HasColumnName("image_url");
 
-                b.Property<string>("LangKey")
+                b.Property(u => u.LangKey)
                     .HasMaxLength(6)
                     .HasColumnType("character varying(6)")
                     .HasColumnName("lang_key");
 
-                b.Property<string>("LastModifiedBy")
+                b.Property(u => u.LastModifiedBy)
                     .HasColumnType("text")
                     .HasColumnName("last_modified_by");
 
-                b.Property<DateTime>("LastModifiedDate")
+                b.Property(u => u.LastModifiedDate)
                     .HasColumnType("timestamp without time zone")
                     .HasColumnName("last_modified_date");
 
-                b.Property<string>("LastName")
+                b.Property(u => u.LastName)
                     .HasMaxLength(50)
                     .HasColumnType("character varying(50)")
                     .HasColumnName("last_name");
 
-                b.Property<bool>("LockoutEnabled")
+                b.Property(u => u.LockoutEnabled)
                     .HasColumnType("boolean")
                     .HasColumnName("lockout_enabled");
 
-                b.Property<DateTimeOffset?>("LockoutEnd")
+                b.Property(u => u.LockoutEnd)
                     .HasColumnType("timestamp with time zone")
                     .HasColumnName("lockout_end");
 
-                b.Property<string>("Login")
+                b.Property(u => u.Login)
                     .HasColumnType("text")
                     .HasColumnName("login");
 
-                b.Property<string>("NormalizedEmail")
+                b.Property(u => u.NormalizedEmail)
                     .HasMaxLength(256)
                     .HasColumnType("character varying(256)")
                     .HasColumnName("normalized_email");
 
-                b.Property<string>("NormalizedUserName")
+                b.Property(u => u.NormalizedUserName)
                     .HasMaxLength(256)
                     .HasColumnType("character varying(256)")
                     .HasColumnName("normalized_user_name");
 
-                b.Property<string>("PasswordHash")
+                b.Property(u => u.PasswordHash)
                     .HasColumnType("text")
                     .HasColumnName("password_hash");
 
-                b.Property<string>("PhoneNumber")
+                b.Property(u => u.PhoneNumber)
                     .HasColumnType("text")
                     .HasColumnName("phone_number");
 
-                b.Property<bool>("PhoneNumberConfirmed")
+                b.Property(u => u.PhoneNumberConfirmed)
                     .HasColumnType("boolean")
                     .HasColumnName("phone_number_confirmed");
 
-                b.Property<DateTime?>("ResetDate")
+                b.Property(u => u.ResetDate)
                     .HasColumnType("timestamp without time zone")
                     .HasColumnName("reset_date");
 
-                b.Property<string>("ResetKey")
+                b.Property(u => u.ResetKey)
                     .HasMaxLength(20)
                     .HasColumnType("character varying(20)")
                     .HasColumnName("reset_key");
 
-                b.Property<string>("SecurityStamp")
+                b.Property(u => u.SecurityStamp)
                     .HasColumnType("text")
                     .HasColumnName("security_stamp");
 
-                b.Property<bool>("TwoFactorEnabled")
+                b.Property(u => u.TwoFactorEnabled)
                     .HasColumnType("boolean")
                     .HasColumnName("two_factor_enabled");
 
-                b.Property<string>("UserName")
+                b.Property(u => u.UserName)
                     .HasMaxLength(256)
                     .HasColumnType("character varying(256)")
                     .HasColumnName("user_name");
 
-                b.HasKey("Id")
+                b.HasKey(u => u.Id)
                     .HasName("pk_users");
 
-                b.HasIndex("NormalizedEmail")
+                b.HasIndex(u => u.NormalizedEmail)
                     .HasDatabaseName("ix_email");
 
-                b.HasIndex("NormalizedUserName")
+                b.HasIndex(u => u.NormalizedUserName)
                     .IsUnique()
                     .HasDatabaseName("ix_username");
 
@@ -329,25 +338,29 @@ namespace Plainly.Infrastructure.Data
 
             modelBuilder.Entity<UserRole>(b =>
             {
-                b.Property<string>("UserId")
+                b.Property(ur => ur.UserId)
                     .HasColumnType("text")
                     .HasColumnName("user_id");
 
-                b.Property<string>("RoleId")
+                b.Property(ur => ur.RoleId)
                     .HasColumnType("text")
                     .HasColumnName("role_id");
 
-                b.Property<string>("UserId")
+                b.Property(ur => ur.UserId)
                     .HasColumnType("text")
                     .HasColumnName("user_id");
 
-                b.HasKey("UserId", "RoleId")
+                b.HasKey(ur => new
+                    {
+                        ur.UserId, 
+                        ur.RoleId,
+                    })
                     .HasName("pk_user_roles");
 
-                b.HasIndex("RoleId")
+                b.HasIndex(ur => ur.RoleId)
                     .HasDatabaseName("ix_user_roles_role_id");
 
-                b.HasIndex("UserId")
+                b.HasIndex(ur => ur.UserId)
                     .HasDatabaseName("ix_user_roles_user_id");
 
                 b.ToTable("user_roles");
@@ -357,7 +370,7 @@ namespace Plainly.Infrastructure.Data
             {
                 b.HasOne<Role>()
                     .WithMany()
-                    .HasForeignKey("RoleId")
+                    .HasForeignKey(rc => rc.RoleId)
                     .HasConstraintName("fk_role_claims_roles_role_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
@@ -367,7 +380,7 @@ namespace Plainly.Infrastructure.Data
             {
                 b.HasOne<User>()
                     .WithMany()
-                    .HasForeignKey("UserId")
+                    .HasForeignKey(uc => uc.UserId)
                     .HasConstraintName("fk_user_claims_users_user_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
@@ -377,7 +390,7 @@ namespace Plainly.Infrastructure.Data
             {
                 b.HasOne<User>()
                     .WithMany()
-                    .HasForeignKey("UserId")
+                    .HasForeignKey(ul => ul.UserId)
                     .HasConstraintName("fk_user_logins_users_user_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
@@ -387,7 +400,7 @@ namespace Plainly.Infrastructure.Data
             {
                 b.HasOne<User>()               
                     .WithMany()
-                    .HasForeignKey("UserId")
+                    .HasForeignKey(ut => ut.UserId)
                     .HasConstraintName("fk_user_tokens_users_user_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
@@ -396,32 +409,38 @@ namespace Plainly.Infrastructure.Data
             modelBuilder.Entity<UserRole>(b =>
             {
                 b.HasOne<Role>()
-                    .WithMany("UserRoles")
-                    .HasForeignKey("RoleId")
+                    .WithMany(r => r.UserRoles)
+                    .HasForeignKey(ur => ur.RoleId)
                     .HasConstraintName("fk_user_roles_roles_role_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
                 b.HasOne<User>()
-                    .WithMany("UserRoles")
-                    .HasForeignKey("UserId")
+                    .WithMany(u => u.UserRoles)
+                    .HasForeignKey(ur => ur.UserId)
                     .HasConstraintName("fk_user_roles_users_user_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
-                b.HasOne<User>("User")
+                b.HasOne(ur => ur.User)
                     .WithMany()
-                    .HasForeignKey("UserId")
+                    .HasForeignKey(ur => ur.UserId)
                     .HasConstraintName("fk_user_roles_users_user_id");
 
-                b.Navigation("Role");
+                b.Navigation(ur => ur.Role);
 
-                b.Navigation("User");
+                b.Navigation(ur => ur.User);
             });
 
-            modelBuilder.Entity<Role>(b => { b.Navigation("UserRoles"); });
+            modelBuilder.Entity<Role>(b =>
+            {
+                b.Navigation(r => r.UserRoles);
+            });
 
-            modelBuilder.Entity<User>(b => { b.Navigation("UserRoles"); });
+            modelBuilder.Entity<User>(b =>
+            {
+                b.Navigation(u => u.UserRoles);
+            });
         }
         
         /// <summary>
