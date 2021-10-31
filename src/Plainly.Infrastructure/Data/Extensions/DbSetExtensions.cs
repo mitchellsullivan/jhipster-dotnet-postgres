@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Serilog;
 
-namespace Plainy.Infrastructure.Data.Extensions
+namespace Plainly.Infrastructure.Data.Extensions
 {
     public static class DbSetExtensions
     {

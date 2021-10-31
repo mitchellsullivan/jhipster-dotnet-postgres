@@ -2,7 +2,7 @@ using JHipsterNet.Core.Pagination;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace Plainy.Web.Rest.Utilities
+namespace Plainly.Web.Rest.Utilities
 {
     public static class PaginationUtil
     {

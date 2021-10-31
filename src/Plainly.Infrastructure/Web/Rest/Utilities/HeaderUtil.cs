@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace Plainy.Web.Rest.Utilities
+namespace Plainly.Web.Rest.Utilities
 {
     public static class HeaderUtil
     {

@@ -8,9 +8,9 @@ using JHipsterNet.Core.Pagination;
 using JHipsterNet.Core.Pagination.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using Plainy.Domain.Repositories.Interfaces;
+using Plainly.Domain.Repositories.Interfaces;
 
-namespace Plainy.Infrastructure.Data.Repositories
+namespace Plainly.Infrastructure.Data.Repositories
 {
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>, IDisposable where TEntity : class
     {

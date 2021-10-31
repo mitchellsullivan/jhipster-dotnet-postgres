@@ -4,10 +4,10 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Plainy.Domain.Repositories.Interfaces;
-using Plainy.Infrastructure.Data.Extensions;
+using Plainly.Domain.Repositories.Interfaces;
+using Plainly.Infrastructure.Data.Extensions;
 
-namespace Plainy.Infrastructure.Data.Repositories
+namespace Plainly.Infrastructure.Data.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

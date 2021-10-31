@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Plainy.Infrastructure.Data.Extensions
+namespace Plainly.Infrastructure.Data.Extensions
 {
     public static class PropertyAccessorCache<T> where T : class
     {

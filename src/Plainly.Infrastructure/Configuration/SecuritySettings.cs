@@ -1,4 +1,4 @@
-namespace Plainy.Infrastructure.Configuration
+namespace Plainly.Infrastructure.Configuration
 {
     public class SecuritySettings
     {

@@ -1,23 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <RootNamespace>Plainy.Infrastructure</RootNamespace>
-        <OutputType>Library</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>Plainly.Infrastructure</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection"  />
-        <PackageReference Include="Serilog"  />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore"  />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"  />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools"  />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+        <PackageReference Include="Serilog" />
+        <PackageReference Include="EFCore.NamingConventions" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Plainly.Domain\Plainly.Domain.csproj" />
         <ProjectReference Include="..\Plainly.Dto\Plainly.Dto.csproj" />
         <ProjectReference Include="..\Plainly.Crosscutting\Plainly.Crosscutting.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Data\Migrations" />
     </ItemGroup>
 
 </Project>
