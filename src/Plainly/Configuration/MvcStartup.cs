@@ -15,11 +15,13 @@ namespace Plainly.Configuration
             services.AddHttpContextAccessor();
 
             services.AddMvc();
-
-            //https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/health-checks?view=aspnetcore-2.2
+            
             services.AddHealthChecks();
 
-            services.AddControllers(options => { options.ModelBinderProviders.Insert(0, new PageableBinderProvider()); })
+            services.AddControllers(options =>
+                {
+                    options.ModelBinderProviders.Insert(0, new PageableBinderProvider());
+                })
             .AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -29,10 +31,10 @@ namespace Plainly.Configuration
                 options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
             });
 
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
+            // services.AddSpaStaticFiles(configuration =>
+            // {
+            //     configuration.RootPath = "ClientApp/dist";
+            // });
 
             return services;
         }
@@ -52,14 +54,14 @@ namespace Plainly.Configuration
 
             app.UseHealthChecks("/health");
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
-            });
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
+            // app.UseSpa(spa =>
+            // {
+            //     spa.Options.SourcePath = "ClientApp";
+            // });
+            // if (!env.IsDevelopment())
+            // {
+            //     app.UseSpaStaticFiles();
+            // }
 
             return app;
         }

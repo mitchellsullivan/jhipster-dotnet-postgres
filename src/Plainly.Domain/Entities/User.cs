@@ -47,7 +47,11 @@ namespace Plainly.Domain
 
         [Column("reset_date")] public DateTime? ResetDate { get; set; }
 
-        [JsonIgnore] public virtual ICollection<UserRole> UserRoles { get; set; }
+        [JsonIgnore] 
+        public virtual ICollection<Role> Roles { get; set; }
+
+        [JsonIgnore] 
+        public virtual ICollection<UserRole> UserRoles { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }

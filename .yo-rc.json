@@ -16,7 +16,7 @@
     "applicationType": "monolith",
     "databaseType": "postgres",
     "authenticationType": "jwt",
-    "serverPort": "5000",
+    "serverPort": "5008",
     "prodDatabaseType": "postgres",
     "jhipsterVersion": "6.10.5",
     "baseName": "Plainly",
@@ -25,6 +25,12 @@
     "jhiPrefix": "app",
     "entitySuffix": "",
     "dtoSuffix": "DTO",
-    "skipClient": true
+    "skipClient": false,
+      "useSass": true,
+      "clientPackageManager": "npm",
+      "clientFramework": "react",
+      "clientTheme": "none",
+      "clientThemeVariant": "",
+      "enableTranslation": false
   }
 }

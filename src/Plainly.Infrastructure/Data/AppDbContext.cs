@@ -67,12 +67,12 @@ namespace Plainly.Infrastructure.Data
                     .HasColumnName("role_id");
 
                 b.HasKey(rc => rc.Id)
-                    .HasName("pk_role_claims");
+                    .HasName("pk_role_claim");
 
                 b.HasIndex(rc => rc.RoleId)
-                    .HasDatabaseName("ix_role_claims_role_id");
+                    .HasDatabaseName("ix_role_claim_role_id");
 
-                b.ToTable("role_claims");
+                b.ToTable("role_claim");
             });
 
             modelBuilder.Entity<IdentityUserClaim<string>>(b =>
@@ -98,12 +98,12 @@ namespace Plainly.Infrastructure.Data
                     .HasColumnName("user_id");
 
                 b.HasKey(uc => uc.Id)
-                    .HasName("pk_user_claims");
+                    .HasName("pk_user_claim");
 
                 b.HasIndex(uc => uc.UserId)
-                    .HasDatabaseName("ix_user_claims_user_id");
+                    .HasDatabaseName("ix_user_claim_user_id");
 
-                b.ToTable("user_claims");
+                b.ToTable("user_claim");
             });
 
             modelBuilder.Entity<IdentityUserLogin<string>>(b =>
@@ -130,12 +130,12 @@ namespace Plainly.Infrastructure.Data
                         ul.LoginProvider,
                         ul.ProviderKey
                     })
-                    .HasName("pk_user_logins");
+                    .HasName("pk_user_login");
 
                 b.HasIndex(ul => ul.UserId)
                     .HasDatabaseName("ix_user_logins_user_id");
 
-                b.ToTable("user_logins");
+                b.ToTable("user_login");
             });
 
             modelBuilder.Entity<IdentityUserToken<string>>(b =>
@@ -162,9 +162,9 @@ namespace Plainly.Infrastructure.Data
                         ut.LoginProvider, 
                         ut.Name,
                     })
-                    .HasName("pk_user_tokens");
+                    .HasName("pk_user_token");
 
-                b.ToTable("user_tokens");
+                b.ToTable("user_token");
             });
 
             modelBuilder.Entity<Role>(b =>
@@ -189,13 +189,13 @@ namespace Plainly.Infrastructure.Data
                     .HasColumnName("normalized_name");
 
                 b.HasKey(r => r.Id)
-                    .HasName("pk_roles");
+                    .HasName("pk_role");
 
                 b.HasIndex(r => r.NormalizedName)
                     .IsUnique()
                     .HasDatabaseName("ix_role_name");
 
-                b.ToTable("roles");
+                b.ToTable("role");
             });
 
             modelBuilder.Entity<User>(b =>
@@ -324,7 +324,7 @@ namespace Plainly.Infrastructure.Data
                     .HasColumnName("user_name");
 
                 b.HasKey(u => u.Id)
-                    .HasName("pk_users");
+                    .HasName("pk_user");
 
                 b.HasIndex(u => u.NormalizedEmail)
                     .HasDatabaseName("ix_email");
@@ -333,37 +333,7 @@ namespace Plainly.Infrastructure.Data
                     .IsUnique()
                     .HasDatabaseName("ix_username");
 
-                b.ToTable("users");
-            });
-
-            modelBuilder.Entity<UserRole>(b =>
-            {
-                b.Property(ur => ur.UserId)
-                    .HasColumnType("text")
-                    .HasColumnName("user_id");
-
-                b.Property(ur => ur.RoleId)
-                    .HasColumnType("text")
-                    .HasColumnName("role_id");
-
-                b.Property(ur => ur.UserId)
-                    .HasColumnType("text")
-                    .HasColumnName("user_id");
-
-                b.HasKey(ur => new
-                    {
-                        ur.UserId, 
-                        ur.RoleId,
-                    })
-                    .HasName("pk_user_roles");
-
-                b.HasIndex(ur => ur.RoleId)
-                    .HasDatabaseName("ix_user_roles_role_id");
-
-                b.HasIndex(ur => ur.UserId)
-                    .HasDatabaseName("ix_user_roles_user_id");
-
-                b.ToTable("user_roles");
+                b.ToTable("user");
             });
 
             modelBuilder.Entity<IdentityRoleClaim<string>>(b =>
@@ -371,7 +341,7 @@ namespace Plainly.Infrastructure.Data
                 b.HasOne<Role>()
                     .WithMany()
                     .HasForeignKey(rc => rc.RoleId)
-                    .HasConstraintName("fk_role_claims_roles_role_id")
+                    .HasConstraintName("fk_role_claim_role_role_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
@@ -381,7 +351,7 @@ namespace Plainly.Infrastructure.Data
                 b.HasOne<User>()
                     .WithMany()
                     .HasForeignKey(uc => uc.UserId)
-                    .HasConstraintName("fk_user_claims_users_user_id")
+                    .HasConstraintName("fk_user_claim_user_user_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
@@ -391,7 +361,7 @@ namespace Plainly.Infrastructure.Data
                 b.HasOne<User>()
                     .WithMany()
                     .HasForeignKey(ul => ul.UserId)
-                    .HasConstraintName("fk_user_logins_users_user_id")
+                    .HasConstraintName("fk_user_logins_user_user_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
@@ -401,42 +371,60 @@ namespace Plainly.Infrastructure.Data
                 b.HasOne<User>()               
                     .WithMany()
                     .HasForeignKey(ut => ut.UserId)
-                    .HasConstraintName("fk_user_tokens_users_user_id")
+                    .HasConstraintName("fk_user_tokens_user_user_id")
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
             });
 
-            modelBuilder.Entity<UserRole>(b =>
-            {
-                b.HasOne<Role>()
-                    .WithMany(r => r.UserRoles)
-                    .HasForeignKey(ur => ur.RoleId)
-                    .HasConstraintName("fk_user_roles_roles_role_id")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+            modelBuilder.Entity<User>(b =>
+                b.HasMany(u => u.Roles)
+                .WithMany(r => r.Users)
+                .UsingEntity<UserRole>(
+                    j => j.HasOne(ur => ur.Role)
+                        .WithMany(r => r.UserRoles)
+                        .HasForeignKey(ur => ur.RoleId)
+                        .HasConstraintName("fk_user_role_role_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired(),
+                    j => j.HasOne(ur => ur.User)
+                        .WithMany(u => u.UserRoles)
+                        .HasForeignKey(ur => ur.UserId)
+                        .HasConstraintName("fk_user_role_user_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired(),
+                    j =>
+                    {
+                        j.Property(ur => ur.UserId)
+                            .HasColumnType("text")
+                            .HasColumnName("user_id");
+            
+                        j.Property(ur => ur.RoleId)
+                            .HasColumnType("text")
+                            .HasColumnName("role_id");
+            
+                        j.HasKey(ur => new { ur.UserId, ur.RoleId, })
+                            .HasName("pk_user_role");
+            
+                        j.HasIndex(ur => ur.RoleId)
+                            .HasDatabaseName("ix_user_role_role_id");
+            
+                        j.HasIndex(ur => ur.UserId)
+                            .HasDatabaseName("ix_user_role_user_id");
 
-                b.HasOne<User>()
-                    .WithMany(u => u.UserRoles)
-                    .HasForeignKey(ur => ur.UserId)
-                    .HasConstraintName("fk_user_roles_users_user_id")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                        j.Navigation(ur => ur.Role);
 
-                b.HasOne(ur => ur.User)
-                    .WithMany()
-                    .HasForeignKey(ur => ur.UserId)
-                    .HasConstraintName("fk_user_roles_users_user_id");
-
-                b.Navigation(ur => ur.Role);
-
-                b.Navigation(ur => ur.User);
-            });
+                        j.Navigation(ur => ur.User);
+                        
+                        j.ToTable("user_role");
+                        
+                    })
+                );
 
             modelBuilder.Entity<Role>(b =>
             {
                 b.Navigation(r => r.UserRoles);
             });
-
+            
             modelBuilder.Entity<User>(b =>
             {
                 b.Navigation(u => u.UserRoles);

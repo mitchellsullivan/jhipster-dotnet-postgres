@@ -17,11 +17,11 @@ dotnet ef migrations add "$MIGRATION_NAME" \
 
 echo "Done adding migration $MIGRATION_NAME";
 
-dotnet ef database update \
-  --startup-project "../src/$ROOT_NS/$ROOT_NS.csproj" \
-  -- "$CONF_ENV"
-  
-echo "Done updating database with migration $MIGRATION_NAME";
+#dotnet ef database update \
+#  --startup-project "../src/$ROOT_NS/$ROOT_NS.csproj" \
+#  -- "$CONF_ENV"
+#  
+#echo "Done updating database with migration $MIGRATION_NAME";
 
 
 
